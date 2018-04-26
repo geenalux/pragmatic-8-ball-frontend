@@ -1,14 +1,34 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import { StackNavigator } from "react-navigation"
+
+import { Provider } from "react-redux"
+import store from "./store"
+
+import Home from "./components/Home"
+import Ask from "./components/Ask"
+
+const RootNavigator = StackNavigator({
+  Main: {
+    screen: Home,
+    navigationOptions: {
+      headerTitle: "Home"
+    }
+  // },
+  // AskQuestion: {
+  //   screen: Ask,
+  //   navigationOptions: {
+  //     headerTitle: "Ask"
+  //   }
+  }
+})
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <Provider store={store}>
+        <RootNavigator />
+      </Provider>
     );
   }
 }
