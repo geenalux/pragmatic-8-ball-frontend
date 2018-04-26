@@ -1,6 +1,6 @@
 ## Pragmatic 8 Ball
 
-A mobile app built with Node.js, Sequelize, and Express on the backend(https://github.com/geenagao/pragmatic-8-ball-backend), and React Native and React-Redux on the frontend (https://github.com/geenagao/pragmatic-8-ball-frontend).
+A mobile app built with Node.js, Sequelize, and Express on the backend (https://github.com/geenagao/pragmatic-8-ball-backend), and React Native and React-Redux on the frontend (https://github.com/geenagao/pragmatic-8-ball-frontend).
 
 ## How it works
 
