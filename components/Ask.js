@@ -35,8 +35,19 @@ class Ask extends React.Component {
     let randomId = getRandomResponse(max)
     let responseContent = responses[randomId].content
 
-    let lowerCaseInput = this.state.input.toLowerCase()
-    let completeQuestion = eightBallName + ' ' + lowerCaseInput
+    let lowerCaseInput = this.state.input.toLowerCase();
+    let stateInput = this.state.input
+
+    function sanitizeQuestion () {
+      if (eightBallName !== 'Classic 8 Ball Mode') {
+        return eightBallName + ' ' + lowerCaseInput
+      } else {
+        return stateInput
+      }
+    }
+
+    let completeQuestion = sanitizeQuestion()
+
     let questionBody = { eightBallId: this.state.eightBallId, input: completeQuestion, responseContent }
 
     this.props.sendQuestionToServer(questionBody)
