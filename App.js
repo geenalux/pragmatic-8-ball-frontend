@@ -14,12 +14,12 @@ const RootNavigator = StackNavigator({
     navigationOptions: {
       headerTitle: "Home"
     }
-  // },
-  // AskQuestion: {
-  //   screen: Ask,
-  //   navigationOptions: {
-  //     headerTitle: "Ask"
-  //   }
+  },
+  AskQuestion: {
+    screen: Ask,
+    navigationOptions: {
+      headerTitle: "Ask"
+    }
   }
 })
 

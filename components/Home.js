@@ -7,7 +7,8 @@ export default Home = ({ navigation }) => (
       <Text style={{ fontSize: 36, color: "purple" }}>Pragmatic 8 Ball</Text>
       <Image source={{ uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/8_ball_icon.svg/500px-8_ball_icon.svg.png" }} style={styles.logo} />
       <View style={styles.askButton}>
-        <Button onPress={() => navigation.navigate("AskQuestion")} title="Ask a question" />
+        <Button onPress={() => navigation.navigate("AskQuestion")} title="Ask the 8 ball" />
+        <Button title="Enter Live Mode" />
       </View>
     </View>
 )
