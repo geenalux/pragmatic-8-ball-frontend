@@ -21,8 +21,6 @@ class Ask extends React.Component {
     this.handlePress = this.handlePress.bind(this)
   }
 
-  getRandomResponses
-
   handlePress(localState) {
     const responses = this.props.eightBalls[this.state.eightBallIndex].responses
     const eightBallName = this.props.eightBalls[this.state.eightBallIndex].name
@@ -55,9 +53,6 @@ class Ask extends React.Component {
   }
 
   render() {
-    // console.log("Local State EightBallIndex:", this.state.eightBallIndex)
-    // console.log("Local State EightBallId:", this.state.eightBallId)
-    // console.log("Local State Input:", this.state.input)
     let data = []
     let eightBalls = this.props.eightBalls
     eightBalls.forEach(element => {

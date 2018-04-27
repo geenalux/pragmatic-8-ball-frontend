@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
 
 import eightBalls from "./eightBalls";
-import questions from "./questions"
+import question from "./question"
 
 const rootReducer = combineReducers({
   eightBalls,
-  questions
+  question
 })
 
 export * from "./eightBalls";
-export * from "./questions"
+export * from "./question"
 
 export default rootReducer;

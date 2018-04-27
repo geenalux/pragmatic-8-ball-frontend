@@ -7,6 +7,7 @@ import store from "./store"
 
 import Home from "./components/Home"
 import Ask from "./components/Ask"
+import Answer from "./components/Answer"
 
 const RootNavigator = StackNavigator({
   Main: {
@@ -19,6 +20,12 @@ const RootNavigator = StackNavigator({
     screen: Ask,
     navigationOptions: {
       headerTitle: "Ask"
+    }
+  },
+  AnswerPage: {
+    screen: Answer,
+    navigationOptions: {
+      headerTitle: "Answer"
     }
   }
 })

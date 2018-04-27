@@ -3,7 +3,7 @@ import axios from "axios"
 // INITIAL STATE
 const initialState = {}
 
-// ACTION TYPE CREATPORS
+// ACTION TYPE CREATORS
 const ADD_QUESTION = "ADD_QUESTION"
 
 // ACTION CREATORS
