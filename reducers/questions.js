@@ -14,13 +14,10 @@ const addQuestion = question => {
 // THUNK CREATORS
 export const postQuestion = function(question) {
   return function thunk(dispatch) {
-    console.log("Inside postQuestion thunk")
-    console.log("QUESTION:", question)
     return axios
       .post("http://localhost:8080/api/questions", question)
       .then(res => res.data)
       .then(newQuestion => {
-        console.log("QUESTION:", newQuestion)
         return dispatch(addQuestion(newQuestion))})
       .catch(err => console.error(err));
   };

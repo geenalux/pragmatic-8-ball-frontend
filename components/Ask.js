@@ -21,11 +21,24 @@ class Ask extends React.Component {
     this.handlePress = this.handlePress.bind(this)
   }
 
+  getRandomResponses
+
   handlePress(localState) {
     const responses = this.props.eightBalls[this.state.eightBallIndex].responses
+    const eightBallName = this.props.eightBalls[this.state.eightBallIndex].name
+
     // randomly select response
-    let responseId = 1;
-    let questionBody = { eightBallId: this.state.eightBallId, input: this.state.input, responseId }
+    let max = responses.length
+    function getRandomResponse(maxVal) {
+      return Math.floor(Math.random() * Math.floor(maxVal))
+    }
+    let randomId = getRandomResponse(max)
+    let responseContent = responses[randomId].content
+
+    let lowerCaseInput = this.state.input.toLowerCase()
+    let completeQuestion = eightBallName + ' ' + lowerCaseInput
+    let questionBody = { eightBallId: this.state.eightBallId, input: completeQuestion, responseContent }
+
     this.props.sendQuestionToServer(questionBody)
     this.props.navigation.navigate('AnswerPage')
   }
