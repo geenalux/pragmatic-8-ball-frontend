@@ -2,7 +2,11 @@ import React from "react"
 import { StyleSheet, Text, View, Image, Button } from "react-native"
 import { StackNavigator } from "react-navigation"
 
+import { Provider } from "react-redux";
+import store from "../store";
+
 export default Home = ({ navigation }) => (
+  <Provider store={store}>
     <View style={styles.container}>
       <Text style={{ fontSize: 36, color: "purple" }}>Pragmatic 8 Ball</Text>
       <Image source={{ uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/8_ball_icon.svg/500px-8_ball_icon.svg.png" }} style={styles.logo} />
@@ -11,6 +15,7 @@ export default Home = ({ navigation }) => (
         <Button title="Enter Live Mode" />
       </View>
     </View>
+  </Provider>
 )
 
 const styles = StyleSheet.create({

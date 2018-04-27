@@ -7,15 +7,18 @@ const initialState = []
 const GET_EIGHTBALLS = "GET_EIGHTBALLS"
 
 // ACTION CREATORS
-const getEightBalls = eightBalls => { type: GET_EIGHTBALLS, eightBalls }
+const getEightBalls = eightBalls => {
+  return { type: GET_EIGHTBALLS, eightBalls: eightBalls }
+}
 
 // THUNK CREATORS
 export const fetchEightBalls = function() {
   return function thunk(dispatch) {
     return axios
-      .get("/api/eightBalls")
+      .get("http://localhost:8080/api/eightBalls")
       .then(res => res.data)
-      .then(eightBalls => dispatch(getEightBalls(eightBalls)))
+      .then(eightBalls => {
+        return dispatch(getEightBalls(eightBalls))})
       .catch(err => console.error(err));
   };
 };
