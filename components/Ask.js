@@ -54,7 +54,7 @@ class Ask extends React.Component {
 
   render() {
     let data = []
-    let eightBalls = this.props.eightBalls
+    let eightBalls = this.props.eightBalls.slice(0, this.props.eightBalls.length - 1)
     eightBalls.forEach(element => {
       let valObj = {}
       valObj['eightBallId'] = element.id

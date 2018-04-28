@@ -7,11 +7,7 @@ import { connect } from "react-redux"
 class Answer extends React.Component {
 
   componentDidMount() {
-    this.handlePress = this.handlePress.bind(this)
-  }
 
-  handlePress(localState) {
-    this.props.navigation.navigate('AskQuestion')
   }
 
   render() {
@@ -21,7 +17,9 @@ class Answer extends React.Component {
         <Text style={{ fontSize: 36, color: "black" }}>{this.props.question.input}</Text>
         <Text style={{ fontSize: 36, color: "purple" }}>Pragmatic 8 Ball says...</Text>
         <Text style={{ fontSize: 36, color: "black" }}>{this.props.question.responseContent}</Text>
-        <Button onPress={() => this.handlePress(this.state)} title="Ask another question" />
+        <Button onPress={() => this.props.navigation.navigate('AskQuestion')} title="Ask another question in Live Mode" />
+        <Button onPress={() => this.props.navigation.navigate('LiveQuestion')} title="Need a more pragmatic answer? Ask a human!" />
+        <Button onPress={() => this.props.navigation.navigate('Main')} title="Back to Home" />
       </View>
     )
   }

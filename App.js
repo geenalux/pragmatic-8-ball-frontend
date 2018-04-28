@@ -8,6 +8,9 @@ import store from "./store"
 import Home from "./components/Home"
 import Ask from "./components/Ask"
 import Answer from "./components/Answer"
+import LiveAsk from "./components/LiveAsk"
+import LiveAnswer from "./components/LiveAnswer"
+import LiveQuestions from "./components/LiveQuestions"
 
 const RootNavigator = StackNavigator({
   Main: {
@@ -26,6 +29,24 @@ const RootNavigator = StackNavigator({
     screen: Answer,
     navigationOptions: {
       headerTitle: "Answer"
+    }
+  },
+  LiveQuestion: {
+    screen: LiveAsk,
+    navigationOptions: {
+      headerTitle: "Live Ask"
+    }
+  },
+  LiveAnswerPage: {
+    screen: LiveAnswer,
+    navigationOptions: {
+      headerTitle: "Live Answer"
+    }
+  },
+  LiveQuestionsList: {
+    screen: LiveQuestions,
+    navigationOptions: {
+      headerTitle: "Live Questions"
     }
   }
 })
