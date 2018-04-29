@@ -1,6 +1,7 @@
 import React from "react"
 import { StyleSheet, Text, View, Button, TextInput } from "react-native"
 import { Dropdown } from 'react-native-material-dropdown';
+import RNShakeEvent from 'react-native-shake-event'
 
 import { StackNavigator } from "react-navigation"
 import { connect } from "react-redux"
@@ -18,6 +19,9 @@ class LiveAsk extends React.Component {
   componentDidMount() {
     this.props.fetchEightBallsFromServer();
     this.handlePress = this.handlePress.bind(this)
+    RNShakeEvent.addEventListener('shake', () => {
+      this.handlePress(this.state)
+    })
   }
 
   handlePress(localState) {
@@ -29,8 +33,8 @@ class LiveAsk extends React.Component {
   render() {
     return(
       <View>
-        <Text style={{ fontSize: 36, color: "purple" }}>Live Mode: Ask a human!</Text>
-        <Text>What's on your mind?</Text>
+        <Text style={{ fontSize: 28, color: "purple" }}>Live Mode: Ask a human!</Text>
+        <Text style={{ fontSize: 28, color: "black" }}>What's on your mind?</Text>
         <TextInput
         style={{height: 40, borderColor: 'gray', borderWidth: 1}}
         onChangeText={(input) => {
@@ -43,7 +47,6 @@ class LiveAsk extends React.Component {
     )
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -51,22 +54,19 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 })
-
 const mapState = function(state) {
   return {
     eightBalls: state.eightBalls
   };
 };
-
 const mapDispatch = function(dispatch) {
   return {
     fetchEightBallsFromServer: function() {
       return dispatch(fetchEightBalls());
     },
     sendQuestionToServer: function(questionBody) {
-      dispatch(postQuestion(questionBody))
+      return dispatch(postQuestion(questionBody))
     }
   };
 };
-
 export default connect(mapState, mapDispatch)(LiveAsk)

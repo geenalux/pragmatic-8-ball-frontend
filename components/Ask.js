@@ -1,6 +1,7 @@
 import React from "react"
 import { StyleSheet, Text, View, Button, TextInput, Picker } from "react-native"
-import { Dropdown } from 'react-native-material-dropdown';
+import { Dropdown } from 'react-native-material-dropdown'
+import RNShakeEvent from 'react-native-shake-event'
 
 import { StackNavigator } from "react-navigation"
 import { connect } from "react-redux"
@@ -11,7 +12,7 @@ class Ask extends React.Component {
     super(props);
     this.state = {
       eightBallIndex: 0,
-      eightBallId: '',
+      eightBallId: 0,
       input: ''
     };
   }
@@ -19,6 +20,9 @@ class Ask extends React.Component {
   componentDidMount() {
     this.props.fetchEightBallsFromServer();
     this.handlePress = this.handlePress.bind(this)
+    RNShakeEvent.addEventListener('shake', () => {
+      this.handlePress(this.state)
+    })
   }
 
   handlePress(localState) {

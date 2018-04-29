@@ -3,13 +3,18 @@ import { StyleSheet, Text, View, Button, FlatList, TouchableHighlight } from "re
 
 import { StackNavigator } from "react-navigation"
 import { connect } from "react-redux"
-import { fetchEightBall } from "../reducers"
+import { fetchEightBall, fetchQuestion } from "../reducers"
 
 class LiveQuestions extends React.Component {
 
   componentDidMount() {
     let liveEightBallId = 6
     this.props.fetchEightBallFromServer(liveEightBallId)
+  }
+
+  handlePress(questionId) {
+    this.props.fetchQuestionFromServer(questionId)
+    this.props.navigation.navigate('SelectedQuestion')
   }
 
   render() {
@@ -24,7 +29,7 @@ class LiveQuestions extends React.Component {
                   <TouchableHighlight
                     style={styles.button}
                     key={item.id}
-                    onPress={() => this.handlePress(item)}
+                    onPress={() => this.handlePress(item.id)}
                     id={item.id}
                   >
                     <View>
@@ -51,7 +56,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   button: {
-    padding: 10
+    padding: 10,
+    borderWidth: 0.5
   }
 })
 
@@ -66,6 +72,9 @@ const mapDispatch = function(dispatch) {
   return {
     fetchEightBallFromServer: function(eightBallId) {
       return dispatch(fetchEightBall(eightBallId));
+    },
+    fetchQuestionFromServer: function(questionId) {
+      return dispatch(fetchQuestion(questionId));
     },
     sendQuestionToServer: function(questionBody) {
       dispatch(postQuestion(questionBody))
