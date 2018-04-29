@@ -3,20 +3,19 @@ import { StyleSheet, Text, View, Button, FlatList, TouchableHighlight } from "re
 
 import { StackNavigator } from "react-navigation"
 import { connect } from "react-redux"
-import { fetchEightBall } from "../reducers"
+import { fetchLiveQuestion } from "../reducers"
 
 class LiveAnswer extends React.Component {
 
   componentDidMount() {
-    let liveEightBallId = 6
-    this.props.fetchEightBallFromServer(liveEightBallId)
+    // this.props.fetchLiveQuestionFromServer(liveQuestionId)
   }
 
   render() {
     return(
       <View style={styles.container}>
         <Text style={{ fontSize: 28, color: "purple" }}>You asked...</Text>
-        <Text style={styles.answer}>{this.props.question.input}</Text>
+        <Text style={styles.answer}>{this.props.liveQuestion.input}</Text>
         <Text style={{ fontSize: 28, color: "purple" }}>Get ready for pragmatic answers from pragmatic people!</Text>
         <Button onPress={() => this.props.navigation.navigate("LiveQuestionsList")} title="See all Live questions" />
         <Button onPress={() => this.props.navigation.navigate('LiveQuestion')} title="Ask another Live question" />
@@ -40,15 +39,14 @@ const styles = StyleSheet.create({
 
 const mapState = function(state) {
   return {
-    question: state.question,
-    eightBall: state.eightBall
+    liveQuestion: state.liveQuestion,
   };
 };
 
 const mapDispatch = function(dispatch) {
   return {
-    fetchEightBallFromServer: function(eightBallId) {
-      return dispatch(fetchEightBall(eightBallId));
+    fetchLiveQuestionFromServer: function(liveQuestionId) {
+      return dispatch(fetchLiveQuestion(liveQuestionId));
     },
     sendQuestionToServer: function(questionBody) {
       dispatch(postQuestion(questionBody))

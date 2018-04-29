@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, TextInput, FlatList, TouchableHighlight
 
 import { StackNavigator } from "react-navigation"
 import { connect } from "react-redux"
-import { fetchQuestion, postResponse } from "../reducers"
+import { fetchLiveQuestion, postLiveResponse } from "../reducers"
 
 class SingleQuestion extends React.Component {
   constructor(props) {
@@ -19,19 +19,20 @@ class SingleQuestion extends React.Component {
   }
 
   handlePress(localState) {
-    let responseObj = { content: this.state.content, questionId: this.props.question.id }
-    console.log(responseObj)
+    let responseObj = { content: this.state.content, liveQuestionId: this.props.liveQuestion.id }
+    // console.log(responseObj)
     this.props.sendResponseToServer(responseObj)
   }
 
   render() {
+    console.log(this.props.liveQuestion)
     return(
       <View style={styles.container}>
         <Text style={{ fontSize: 28, color: "purple" }}>Question:</Text>
-        <Text style={{ fontSize: 28, color: "black", fontWeight: "bold" }}>{this.props.question.input}</Text>
+        <Text style={{ fontSize: 28, color: "black", fontWeight: "bold" }}>{this.props.liveQuestion.input}</Text>
         <Text style={{ fontSize: 28, color: "purple" }}>Responses:</Text>
         <FlatList
-        data={this.props.question.liveResponses}
+        data={this.props.liveQuestion.liveResponses}
         renderItem={({ item }) => {
           return (
             <View key={item.id}>
@@ -73,17 +74,17 @@ const styles = StyleSheet.create({
 
 const mapState = function(state) {
   return {
-    question: state.question,
+    liveQuestion: state.liveQuestion,
   };
 };
 
 const mapDispatch = function(dispatch) {
   return {
-    fetchQuestionFromServer: function(questionId) {
-      return dispatch(fetchQuestion(questionId));
+    fetchLiveQuestionFromServer: function(questionId) {
+      return dispatch(fetchLiveQuestion(questionId));
     },
     sendResponseToServer: function(responseBody) {
-      dispatch(postResponse(responseBody))
+      dispatch(postLiveResponse(responseBody))
     }
   };
 };

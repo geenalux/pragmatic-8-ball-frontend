@@ -12,7 +12,7 @@ const addResponse = response => {
 }
 
 // THUNK CREATORS
-export const postResponse = function(response) {
+export const postLiveResponse = function(response) {
   return function thunk(dispatch) {
     return axios
       .post("http://localhost:8080/api/liveResponses", response)

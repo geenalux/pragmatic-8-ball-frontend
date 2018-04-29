@@ -5,19 +5,17 @@ import RNShakeEvent from 'react-native-shake-event'
 
 import { StackNavigator } from "react-navigation"
 import { connect } from "react-redux"
-import { fetchEightBalls, postQuestion } from "../reducers"
+import { postLiveQuestion } from "../reducers"
 
 class LiveAsk extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      eightBallId: 6,
       input: ''
     };
   }
 
   componentDidMount() {
-    this.props.fetchEightBallsFromServer();
     this.handlePress = this.handlePress.bind(this)
     RNShakeEvent.addEventListener('shake', () => {
       this.handlePress(this.state)
@@ -25,8 +23,8 @@ class LiveAsk extends React.Component {
   }
 
   handlePress(localState) {
-    let questionBody = { eightBallId: this.state.eightBallId, input: this.state.input, responseContent: null }
-    this.props.sendQuestionToServer(questionBody)
+    let questionBody = { input: this.state.input, responseContent: null }
+    this.props.sendLiveQuestionToServer(questionBody)
     this.props.navigation.navigate('LiveAnswerPage')
   }
 
@@ -56,16 +54,13 @@ const styles = StyleSheet.create({
 })
 const mapState = function(state) {
   return {
-    eightBalls: state.eightBalls
+    liveQuestion: state.liveQuestion
   };
 };
 const mapDispatch = function(dispatch) {
   return {
-    fetchEightBallsFromServer: function() {
-      return dispatch(fetchEightBalls());
-    },
-    sendQuestionToServer: function(questionBody) {
-      return dispatch(postQuestion(questionBody))
+    sendLiveQuestionToServer: function(questionBody) {
+      return dispatch(postLiveQuestion(questionBody))
     }
   };
 };
