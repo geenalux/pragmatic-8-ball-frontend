@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, TextInput, FlatList, TouchableHighlight
 
 import { StackNavigator } from "react-navigation"
 import { connect } from "react-redux"
-import { fetchQuestion } from "../reducers"
+import { fetchQuestion, postResponse } from "../reducers"
 
 class SingleQuestion extends React.Component {
   constructor(props) {
@@ -18,6 +18,11 @@ class SingleQuestion extends React.Component {
     // this.props.fetchQuestionFromServer(questionId)
   }
 
+  handlePress(localState) {
+    let responseObj = { content: this.state.content, questionId: this.props.question.id }
+    console.log(responseObj)
+    this.props.sendResponseToServer(responseObj)
+  }
 
   render() {
     return(
@@ -45,7 +50,7 @@ class SingleQuestion extends React.Component {
         }}
         value={this.state.content}
         />
-        <Button onPress={() => this.handlePress(this.state)} title="Send" />
+        <Button disabled={this.state.content.length < 1} onPress={() => this.handlePress(this.state)} title="Send" />
         <Button onPress={() => this.props.navigation.navigate('LiveQuestion')} title="Ask a question in Live Mode" />
         <Button onPress={() => this.props.navigation.navigate('Main')} title="Back to Home" />
       </View>
@@ -76,6 +81,9 @@ const mapDispatch = function(dispatch) {
   return {
     fetchQuestionFromServer: function(questionId) {
       return dispatch(fetchQuestion(questionId));
+    },
+    sendResponseToServer: function(responseBody) {
+      dispatch(postResponse(responseBody))
     }
   };
 };

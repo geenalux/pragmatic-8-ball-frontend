@@ -20,7 +20,7 @@ class LiveQuestions extends React.Component {
   render() {
     return(
       <View style={styles.container}>
-        <Text style={{ fontSize: 28, color: "purple" }}>Choose a question to answer or see responses:</Text>
+        <Text style={{ fontSize: 28, color: "purple" }}>Respond to or see responses for:</Text>
           <FlatList
             data={this.props.eightBall.questions}
             renderItem={({ item }) => {
@@ -42,7 +42,7 @@ class LiveQuestions extends React.Component {
               );
             }}
           />
-        <Button onPress={() => this.props.navigation.navigate('AskQuestion')} title="Ask a question in Live Mode" />
+        <Button onPress={() => this.props.navigation.navigate('LiveQuestion')} title="Ask a question in Live Mode" />
         <Button onPress={() => this.props.navigation.navigate('Main')} title="Back to Home" />
       </View>
     )
