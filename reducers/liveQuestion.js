@@ -1,4 +1,5 @@
 import axios from "axios"
+import socket from '../socket';
 
 // INITIAL STATE
 const initialState = {}
@@ -23,20 +24,19 @@ export const postLiveQuestion = function(liveQuestion) {
       .post("http://localhost:8080/api/liveQuestions", liveQuestion)
       .then(res => res.data)
       .then(newLiveQuestion => {
-        // console.log(newLiveQuestion)
-        return dispatch(addLiveQuestion(newLiveQuestion))})
+        dispatch(addLiveQuestion(newLiveQuestion))
+        socket.emit('new-liveQuestion', newLiveQuestion);
+      })
       .catch(err => console.error(err));
   };
 };
 
 export const fetchLiveQuestion = function(liveQuestionId) {
-  console.log("Live Question Id In Thunk", liveQuestionId)
   return function thunk(dispatch) {
     return axios
       .get(`http://localhost:8080/api/liveQuestions/${Number(liveQuestionId)}`)
       .then(res => res.data)
       .then(liveQuestion => {
-        console.log('back from server', liveQuestion)
         return dispatch(getLiveQuestion(liveQuestion))})
       .catch(err => console.error(err));
   };

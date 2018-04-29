@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 import eightBalls from "./eightBalls";
 import question from "./questions"
 import eightBall from "./eightBall";
-import response from "./responses";
+import responses from "./responses";
 import liveQuestion from "./liveQuestion"
 import liveQuestions from "./liveQuestions"
 
@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   eightBalls,
   question,
   eightBall,
-  response,
+  responses,
   liveQuestion,
   liveQuestions
 })

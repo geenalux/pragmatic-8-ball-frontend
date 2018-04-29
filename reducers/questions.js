@@ -29,7 +29,6 @@ export const postQuestion = function(question) {
 };
 
 export const fetchQuestion = function(questionId) {
-  console.log("Question Id", questionId)
   return function thunk(dispatch) {
     return axios
       .get(`http://localhost:8080/api/questions/${Number(questionId)}`)

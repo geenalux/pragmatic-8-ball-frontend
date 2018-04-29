@@ -12,14 +12,11 @@ class LiveQuestions extends React.Component {
   }
 
   handlePress(liveQuestionId) {
-    console.log('Live Question Id:', liveQuestionId)
     this.props.fetchLiveQuestionFromServer(liveQuestionId)
     this.props.navigation.navigate('SelectedQuestion')
   }
 
   render() {
-    console.log('Live Questions',this.props.liveQuestions)
-
     return(
       <View style={styles.container}>
         <Text style={{ fontSize: 28, color: "purple" }}>Answer or see responses for:</Text>
@@ -28,7 +25,6 @@ class LiveQuestions extends React.Component {
             renderItem={({ item }) => {
               return (
                 <View key={item.id}>
-                {console.log("ITEM:",item)}
                   <TouchableHighlight
                     style={styles.button}
                     key={item.id}

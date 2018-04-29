@@ -15,17 +15,15 @@ class SingleQuestion extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.fetchQuestionFromServer(questionId)
+    console.log(this.props.responses)
   }
 
   handlePress(localState) {
     let responseObj = { content: this.state.content, liveQuestionId: this.props.liveQuestion.id }
-    // console.log(responseObj)
     this.props.sendResponseToServer(responseObj)
   }
 
   render() {
-    console.log(this.props.liveQuestion)
     return(
       <View style={styles.container}>
         <Text style={{ fontSize: 28, color: "purple" }}>Question:</Text>
@@ -75,6 +73,7 @@ const styles = StyleSheet.create({
 const mapState = function(state) {
   return {
     liveQuestion: state.liveQuestion,
+    responses: state.responses
   };
 };
 

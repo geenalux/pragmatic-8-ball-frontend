@@ -1,7 +1,8 @@
 import axios from "axios"
+import socket from '../socket';
 
 // INITIAL STATE
-const initialState = {}
+const initialState = []
 
 // ACTION TYPE CREATORS
 const ADD_RESPONSE = "ADD_RESPONSE"
@@ -18,8 +19,9 @@ export const postLiveResponse = function(response) {
       .post("http://localhost:8080/api/liveResponses", response)
       .then(res => res.data)
       .then(newResponse => {
-        console.log(newResponse)
-        return dispatch(addResponse(newResponse))})
+        return dispatch(addResponse(newResponse))
+        socket.emit('new-liveResponse', newResponse);
+      })
       .catch(err => console.error(err));
   };
 };
@@ -28,7 +30,7 @@ export const postLiveResponse = function(response) {
 export default function(state = initialState, action) {
   switch(action.type) {
     case ADD_RESPONSE:
-      return Object.assign({}, state, action.response)
+      return [...state, action.response]
     default:
       return state
   }
