@@ -34,7 +34,7 @@ export const postLiveResponse = function(response) {
 export const fetchLiveResponses = function() {
   return function thunk(dispatch) {
     return axios
-      .get("http://localhost:8080/api/liveResponses")
+      .get("http://172.16.21.170:8080/api/liveResponses")
       .then(res => res.data)
       .then(liveResponses => {
         return dispatch(getLiveResponses(liveResponses))})
