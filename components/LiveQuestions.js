@@ -24,10 +24,9 @@ class LiveQuestions extends React.Component {
             data={this.props.liveQuestions}
             renderItem={({ item }) => {
               return (
-                <View key={item.id}>
+                <View>
                   <TouchableHighlight
                     style={styles.button}
-                    key={item.id}
                     onPress={() => this.handlePress(item.id)}
                     id={item.id}
                   >
@@ -43,6 +42,7 @@ class LiveQuestions extends React.Component {
                 </View>
               );
             }}
+            keyExtractor={(item, index) => index.toString()}
           />
         <Button onPress={() => this.props.navigation.navigate('LiveQuestion')} title="Ask a question in Live Mode" />
         <Button onPress={() => this.props.navigation.navigate('Main')} title="Back to Home" />

@@ -24,8 +24,8 @@ export const postLiveQuestion = function(liveQuestion) {
       .post("http://localhost:8080/api/liveQuestions", liveQuestion)
       .then(res => res.data)
       .then(newLiveQuestion => {
-        dispatch(addLiveQuestion(newLiveQuestion))
         socket.emit('new-liveQuestion', newLiveQuestion);
+        return dispatch(addLiveQuestion(newLiveQuestion))
       })
       .catch(err => console.error(err));
   };
