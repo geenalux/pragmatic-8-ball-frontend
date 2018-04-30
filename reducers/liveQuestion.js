@@ -21,7 +21,7 @@ const getLiveQuestion = liveQuestion => {
 export const postLiveQuestion = function(liveQuestion) {
   return function thunk(dispatch) {
     return axios
-      .post("http://localhost:8080/api/liveQuestions", liveQuestion)
+      .post("http://172.16.21.170:8080/api/liveQuestions", liveQuestion)
       .then(res => res.data)
       .then(newLiveQuestion => {
         socket.emit('new-liveQuestion', newLiveQuestion);
@@ -34,7 +34,7 @@ export const postLiveQuestion = function(liveQuestion) {
 export const fetchLiveQuestion = function(liveQuestionId) {
   return function thunk(dispatch) {
     return axios
-      .get(`http://localhost:8080/api/liveQuestions/${Number(liveQuestionId)}`)
+      .get(`http://172.16.21.170:8080/api/liveQuestions/${Number(liveQuestionId)}`)
       .then(res => res.data)
       .then(liveQuestion => {
         return dispatch(getLiveQuestion(liveQuestion))})

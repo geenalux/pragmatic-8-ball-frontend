@@ -20,7 +20,7 @@ const getQuestion = question => {
 export const postQuestion = function(question) {
   return function thunk(dispatch) {
     return axios
-      .post("http://localhost:8080/api/questions", question)
+      .post("http://172.16.21.170:8080/api/questions", question)
       .then(res => res.data)
       .then(newQuestion => {
         return dispatch(addQuestion(newQuestion))})
@@ -31,7 +31,7 @@ export const postQuestion = function(question) {
 export const fetchQuestion = function(questionId) {
   return function thunk(dispatch) {
     return axios
-      .get(`http://localhost:8080/api/questions/${Number(questionId)}`)
+      .get(`http://172.16.21.170:8080/api/questions/${Number(questionId)}`)
       .then(res => res.data)
       .then(question => {
         return dispatch(getQuestion(question))})
