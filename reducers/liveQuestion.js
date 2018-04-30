@@ -13,7 +13,7 @@ const addLiveQuestion = liveQuestion => {
   return { type: ADD_LIVE_QUESTION, liveQuestion: liveQuestion }
 }
 
-const getLiveQuestion = liveQuestion => {
+export const getLiveQuestion = liveQuestion => {
   return { type: GET_LIVE_QUESTION, liveQuestion: liveQuestion }
 }
 

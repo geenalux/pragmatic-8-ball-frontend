@@ -9,7 +9,7 @@ const ADD_RESPONSE = "ADD_RESPONSE"
 const GET_RESPONSES = "GET_RESPONSES"
 
 // ACTION CREATORS
-const addResponse = response => {
+export const addResponse = response => {
   return { type: ADD_RESPONSE, response: response }
 }
 
