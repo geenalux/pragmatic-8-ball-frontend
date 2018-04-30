@@ -21,7 +21,7 @@ class Ask extends React.Component {
     this.props.fetchEightBallsFromServer();
     this.handlePress = this.handlePress.bind(this)
     RNShakeEvent.addEventListener('shake', () => {
-      this.handlePress(this.state)
+      return this.handlePress(this.state)
     })
   }
 

@@ -18,7 +18,7 @@ class LiveAsk extends React.Component {
   componentDidMount() {
     this.handlePress = this.handlePress.bind(this)
     RNShakeEvent.addEventListener('shake', () => {
-      this.handlePress(this.state)
+      return this.handlePress(this.state)
     })
   }
 
