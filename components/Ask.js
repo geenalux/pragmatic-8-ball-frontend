@@ -17,14 +17,6 @@ class Ask extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.props.fetchEightBallsFromServer();
-    this.handlePress = this.handlePress.bind(this)
-    RNShakeEvent.addEventListener('shake', () => {
-      return this.handlePress(this.state)
-    })
-  }
-
   handlePress(localState) {
     const responses = this.props.eightBalls[this.state.eightBallIndex].responses
     const eightBallName = this.props.eightBalls[this.state.eightBallIndex].name
@@ -54,6 +46,24 @@ class Ask extends React.Component {
 
     this.props.sendQuestionToServer(questionBody)
     this.props.navigation.navigate('AnswerPage')
+  }
+
+  componentWillMount() {
+    RNShakeEvent.addEventListener('shake', () => {
+      return this.handlePress(this.state);
+    });
+  }
+
+  componentDidMount() {
+    this.props.fetchEightBallsFromServer();
+    this.handlePress = this.handlePress.bind(this)
+    RNShakeEvent.addEventListener('shake', () => {
+      return this.handlePress(this.state)
+    })
+  }
+
+  componentWillUnmount() {
+    RNShakeEvent.removeEventListener('shake');
   }
 
   render() {

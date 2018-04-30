@@ -15,17 +15,27 @@ class LiveAsk extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.handlePress = this.handlePress.bind(this)
-    RNShakeEvent.addEventListener('shake', () => {
-      return this.handlePress(this.state)
-    })
-  }
-
   handlePress(localState) {
     let questionBody = { input: this.state.input, responseContent: null }
     this.props.sendLiveQuestionToServer(questionBody)
     this.props.navigation.navigate('LiveAnswerPage')
+  }
+
+  componentWillMount() {
+    RNShakeEvent.addEventListener('shake', () => {
+      return this.handlePress(this.state);
+    });
+  }
+
+  componentDidMount() {
+    this.handlePress = this.handlePress.bind(this)
+    // RNShakeEvent.addEventListener('shake', () => {
+    //   return this.handlePress(this.state)
+    // })
+  }
+
+  componentWillUnmount() {
+    RNShakeEvent.removeEventListener('shake');
   }
 
   render() {
