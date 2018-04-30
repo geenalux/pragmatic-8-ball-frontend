@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
-import store, { addResponse, getLiveQuestion } from './store';
+import store from './store';
+import { addResponse, getLiveQuestion } from './reducers'
 
 const socket = io("http://172.16.21.170:8080");
 // exp://localhost:19002
