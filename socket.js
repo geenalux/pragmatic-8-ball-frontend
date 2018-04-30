@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import store from './store';
-import { addResponse, getLiveQuestion } from './reducers'
+import { addResponse, addLiveQuestion } from './reducers'
 
 const socket = io("http://172.16.21.170:8080");
 // exp://localhost:19002
@@ -13,7 +13,7 @@ socket.on('connect', () => {
   });
 
   socket.on('new-liveQuestion', liveQuestion => {
-    store.dispatch(getLiveQuestion(liveQuestion));
+    store.dispatch(addLiveQuestion(liveQuestion));
   });
 
 });

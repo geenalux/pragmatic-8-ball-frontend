@@ -89,7 +89,7 @@ class Ask extends React.Component {
         }}
         value={this.state.input}
         />
-        <Button disabled={this.state.input.length < 1} onPress={() => this.handlePress(this.state)} title="Shake to ask your question!" />
+        <Button disabled={this.state.input.length < 1} onPress={() => this.handlePress(this.state)} title="Ask your question!" />
       </View>
     )
   }

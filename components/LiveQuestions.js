@@ -12,8 +12,9 @@ class LiveQuestions extends React.Component {
   }
 
   handlePress(liveQuestionId) {
-    this.props.fetchLiveQuestionFromServer(liveQuestionId)
     this.props.navigation.navigate('SelectedQuestion')
+    // this.props.fetchLiveQuestionsFromServer()
+    this.props.fetchLiveQuestionFromServer(liveQuestionId)
   }
 
   render() {
@@ -35,7 +36,8 @@ class LiveQuestions extends React.Component {
                         {item.input}
                       </Text>
                       <Text style={{ fontSize: 18, color: "grey" }}>
-                        {item.liveResponses.length} Responses
+                        {console.log(item)}
+                        {item.liveResponses ? item.liveResponses.length : 0} Responses
                       </Text>
                     </View>
                   </TouchableHighlight>

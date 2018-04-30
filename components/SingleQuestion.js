@@ -15,7 +15,7 @@ class SingleQuestion extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchLiveResponsesFromServer()
+    // this.props.fetchLiveResponsesFromServer()
   }
 
   handlePress(localState) {
