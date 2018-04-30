@@ -15,7 +15,7 @@ const getEightBall = eightBall => {
 export const fetchEightBall = function(eightBallId) {
   return function thunk(dispatch) {
     return axios
-      .get(`http://localhost:8080/api/eightBalls/${eightBallId}`)
+      .get(`http://172.16.21.170:8080/api/eightBalls/${eightBallId}`)
       .then(res => res.data)
       .then(eightBall => {
         return dispatch(getEightBall(eightBall))})
