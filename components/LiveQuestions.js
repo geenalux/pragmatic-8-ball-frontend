@@ -36,7 +36,6 @@ class LiveQuestions extends React.Component {
                         {item.input}
                       </Text>
                       <Text style={{ fontSize: 18, color: "grey" }}>
-                        {console.log(item)}
                         {item.liveResponses ? item.liveResponses.length : 0} Responses
                       </Text>
                     </View>
