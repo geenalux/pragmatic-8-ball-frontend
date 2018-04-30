@@ -3,23 +3,22 @@ import { StyleSheet, Text, View, Button, FlatList, TouchableHighlight } from "re
 
 import { StackNavigator } from "react-navigation"
 import { connect } from "react-redux"
-import { fetchEightBall } from "../reducers"
+import { fetchLiveQuestion } from "../reducers"
 
 class LiveAnswer extends React.Component {
 
   componentDidMount() {
-    let liveEightBallId = 6
-    this.props.fetchEightBallFromServer(liveEightBallId)
+    // this.props.fetchLiveQuestionFromServer(liveQuestionId)
   }
 
   render() {
     return(
-      <View>
-        <Text style={{ fontSize: 36, color: "purple" }}>You asked...</Text>
-        <Text style={{ fontSize: 36, color: "black" }}>{this.props.question.input}</Text>
-        <Text style={{ fontSize: 36, color: "purple" }}>Your question has been asked to the world!</Text>
+      <View style={styles.container}>
+        <Text style={{ fontSize: 28, color: "purple" }}>You asked...</Text>
+        <Text style={styles.answer}>{this.props.liveQuestion.input}</Text>
+        <Text style={{ fontSize: 28, color: "purple" }}>Get ready for pragmatic answers from pragmatic people!</Text>
         <Button onPress={() => this.props.navigation.navigate("LiveQuestionsList")} title="See all Live questions" />
-        <Button onPress={() => this.props.navigation.navigate('LiveQuestion')} title="Ask another question" />
+        <Button onPress={() => this.props.navigation.navigate('LiveQuestion')} title="Ask another Live question" />
         <Button onPress={() => this.props.navigation.navigate('Main')} title="Back to Home" />
       </View>
     )
@@ -29,22 +28,25 @@ class LiveAnswer extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
+    paddingHorizontal: 10
+  },
+  answer: {
+    padding: 10,
+    fontSize: 28,
+    fontWeight: "bold"
   }
 })
 
 const mapState = function(state) {
   return {
-    question: state.question,
-    eightBall: state.eightBall
+    liveQuestion: state.liveQuestion,
   };
 };
 
 const mapDispatch = function(dispatch) {
   return {
-    fetchEightBallFromServer: function(eightBallId) {
-      return dispatch(fetchEightBall(eightBallId));
+    fetchLiveQuestionFromServer: function(liveQuestionId) {
+      return dispatch(fetchLiveQuestion(liveQuestionId));
     },
     sendQuestionToServer: function(questionBody) {
       dispatch(postQuestion(questionBody))

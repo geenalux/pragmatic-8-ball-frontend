@@ -11,6 +11,7 @@ import Answer from "./components/Answer"
 import LiveAsk from "./components/LiveAsk"
 import LiveAnswer from "./components/LiveAnswer"
 import LiveQuestions from "./components/LiveQuestions"
+import SingleQuestion from "./components/SingleQuestion"
 
 const RootNavigator = StackNavigator({
   Main: {
@@ -47,6 +48,12 @@ const RootNavigator = StackNavigator({
     screen: LiveQuestions,
     navigationOptions: {
       headerTitle: "Live Questions"
+    }
+  },
+  SelectedQuestion: {
+    screen: SingleQuestion,
+    navigationOptions: {
+      headerTitle: "Live Responses"
     }
   }
 })

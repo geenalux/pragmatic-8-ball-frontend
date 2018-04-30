@@ -3,41 +3,48 @@ import { StyleSheet, Text, View, Button, FlatList, TouchableHighlight } from "re
 
 import { StackNavigator } from "react-navigation"
 import { connect } from "react-redux"
-import { fetchEightBall } from "../reducers"
+import { fetchLiveQuestions, fetchLiveQuestion } from "../reducers"
 
 class LiveQuestions extends React.Component {
 
   componentDidMount() {
-    let liveEightBallId = 6
-    this.props.fetchEightBallFromServer(liveEightBallId)
+    this.props.fetchLiveQuestionsFromServer()
+  }
+
+  handlePress(liveQuestionId) {
+    this.props.fetchLiveQuestionFromServer(liveQuestionId)
+    this.props.navigation.navigate('SelectedQuestion')
   }
 
   render() {
     return(
       <View style={styles.container}>
-        <Text style={{ fontSize: 28, color: "purple" }}>Choose a question to answer or see responses:</Text>
+        <Text style={{ fontSize: 28, color: "purple" }}>Answer or see responses for:</Text>
           <FlatList
-            data={this.props.eightBall.questions}
+            data={this.props.liveQuestions}
             renderItem={({ item }) => {
               return (
-                <View key={item.id}>
+                <View>
                   <TouchableHighlight
                     style={styles.button}
-                    key={item.id}
-                    onPress={() => this.handlePress(item)}
+                    onPress={() => this.handlePress(item.id)}
                     id={item.id}
                   >
                     <View>
                       <Text style={{ fontSize: 24, fontWeight: "bold" }}>
                         {item.input}
                       </Text>
+                      <Text style={{ fontSize: 18, color: "grey" }}>
+                        {item.liveResponses.length} Responses
+                      </Text>
                     </View>
                   </TouchableHighlight>
                 </View>
               );
             }}
+            keyExtractor={(item, index) => index.toString()}
           />
-        <Button onPress={() => this.props.navigation.navigate('AskQuestion')} title="Ask a question in Live Mode" />
+        <Button onPress={() => this.props.navigation.navigate('LiveQuestion')} title="Ask a question in Live Mode" />
         <Button onPress={() => this.props.navigation.navigate('Main')} title="Back to Home" />
       </View>
     )
@@ -51,24 +58,28 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   button: {
-    padding: 10
+    padding: 10,
+    borderWidth: 0.5
   }
 })
 
 const mapState = function(state) {
   return {
-    question: state.question,
-    eightBall: state.eightBall
+    liveQuestion: state.liveQuestion,
+    liveQuestions: state.liveQuestions
   };
 };
 
 const mapDispatch = function(dispatch) {
   return {
-    fetchEightBallFromServer: function(eightBallId) {
-      return dispatch(fetchEightBall(eightBallId));
+    fetchLiveQuestionsFromServer: function() {
+      return dispatch(fetchLiveQuestions());
     },
-    sendQuestionToServer: function(questionBody) {
-      dispatch(postQuestion(questionBody))
+    fetchLiveQuestionFromServer: function(liveQuestionId) {
+      return dispatch(fetchLiveQuestion(liveQuestionId));
+    },
+    sendLiveQuestionToServer: function(questionBody) {
+      dispatch(postLiveQuestion(questionBody))
     }
   };
 };
